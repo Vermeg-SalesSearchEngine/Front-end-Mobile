@@ -1,0 +1,27 @@
+<ion-view view-title="Search">
+
+  <ion-content>
+
+  <div class="list list-inset">
+  <span class="item item-input">
+
+    <i class="icon ion-search placeholder-icon"></i>
+    <input type="text" placeholder="Search" ng-model="searchText"  typeahead="tag for tag in autocomplete($viewValue) | filter:$viewValue" >
+<button  type="button" class="button button-icon icon ion-forward" ng-click="fullTextSearch(searchText, 1)"></button>
+  </span>
+
+</div>
+<div ng-show="isAvailableResults()">
+    
+      <ion-item class="item-remove-animate item-icon-left item-icon-right" ng-repeat="hit in searchResp.hits.hits" type="item-text-wrap" href="#/tab/results/{{$index}}">
+       <i class="icon ion-clipboard"></i>
+        <h2>{{hit.fields.filename[0]}}</h2>
+        <p>{{hit.inner_hits.couple.hits.total}} result(s)</p>
+        <i class="icon ion-chevron-right icon-accessory"></i>
+
+       
+      </ion-item>
+    </ion-list>
+  </div>
+  </ion-content>
+</ion-view>
